@@ -14,8 +14,18 @@ public class Player {
 
     }
 
-    public int playerMove(GameBoard board) {
-        //TODO
+    public int playerMove(GameBoard board, Player player) {
+        switch (player.playerType) {
+            case PLAYER_ONE -> {
+                System.out.println("Player 1 move");
+            }
+            case PLAYER_TWO -> {
+                System.out.println("Player 2 move");
+            }
+            case PLAYER_BOT -> {
+                System.out.println("Bot move");
+            }
+        }
         return 0;
     }
 
@@ -28,7 +38,7 @@ public class Player {
             case PLAYER_TWO -> {
                 return markType.O;
             }
-            case BOT -> {
+            case PLAYER_BOT -> {
                 return MarkType.O;
             }
             default -> throw new IllegalStateException("Unexpected value: " + playerType);
@@ -51,24 +61,12 @@ public class Player {
         return name;
     }
 
-    public void setPlayerType(PlayerType playerType) {
-        this.playerType = playerType;
-    }
-
-    public void setMarkType(MarkType markType) {
-        this.markType = markType;
-    }
-
     public void updatePoins(int points) {
         this.points += points;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    }
-
 
 }
+
+
+

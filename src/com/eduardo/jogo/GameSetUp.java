@@ -8,16 +8,16 @@ public class GameSetUp {
 //    GameBoard gameBoard;
 
     Player player1 = new Player(PlayerType.PLAYER_ONE, "Dudu");
-    Player player2 = new Player(PlayerType.BOT, "Robozinho");
+    Player player2 = new Player(PlayerType.PLAYER_BOT, "Robozinho");
     GameBoard gameBoard = new GameBoard();
     GameMode gameMode = GameMode.PVP;
 
-//    public GameSetUp(Player player1, Player player2, GameMode gameMode, GameBoard gameBoard) {
-//        this.player1 = player1;
-//        this.player2 = player2;
-//        this.gameMode = gameMode;
-//        this.gameBoard = gameBoard;
-//    }
+    public GameSetUp(Player player1, Player player2, GameMode gameMode, GameBoard gameBoard) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.gameMode = gameMode;
+        this.gameBoard = gameBoard;
+    }
 
 
     public Player getPlayer1() {
@@ -37,15 +37,19 @@ public class GameSetUp {
     }
     
     public Player nextPlayer(Player player){
-        switch (player.getMarkType()) {
-            case X -> {
+        switch (player.getPlayerType()) {
+
+            case PLAYER_ONE -> {
                 return getPlayer2();
             }
-            case O -> {
+            case PLAYER_TWO -> {
+                return  getPlayer1();
+            }
+            case PLAYER_BOT -> {
                 return getPlayer1();
             }
-            default -> throw new IllegalStateException("Unexpected value: " + player.getMarkType());
         }
 
+        return player;
     }
 }

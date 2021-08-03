@@ -4,8 +4,8 @@ public class RoundLoop {
 
     NextMove nextMove;
 
-    public int roundLoop(GameBoard board){
-
+    public int roundLoop(GameBoard board) {
+        return 0;
     }
 
 }
