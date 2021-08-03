@@ -5,14 +5,18 @@ public class RoundLoop {
     public void roundLoop(GameBoard board, GameSetUp gameSetUp) {
 
         switch (gameSetUp.getGameMode()) {
-            case PVC -> System.out.println("Modo PVC");
-            case PVP -> System.out.println("Modo PVP");
+            case PVC: {
+                System.out.println("Modo PVC");
+            }
+            case PVP: {
+                System.out.println("Modo PVC");
+            }
         }
 
 
     }
-    
-    public PlayerType nextPlayer(Player player){
+
+    public PlayerType nextPlayer(Player player) {
         switch (player.getPlayerType()) {
             case PLAYER_ONE -> {
                 return PlayerType.PLAYER_TWO;

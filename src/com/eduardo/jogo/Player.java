@@ -6,6 +6,7 @@ public class Player {
     private MarkType markType;
     private int points;
     private String name;
+    private int positionThePlayerChose;
 
     public Player(PlayerType playerType, String name) {
         this.playerType = playerType;
@@ -65,7 +66,13 @@ public class Player {
         this.points += points;
     }
 
+    public int getPositionThePlayerChose() {
+        return positionThePlayerChose;
+    }
 
+    public void setPositionThePlayerChose(int positionThePlayerChose) {
+        this.positionThePlayerChose = positionThePlayerChose;
+    }
 }
 
 
