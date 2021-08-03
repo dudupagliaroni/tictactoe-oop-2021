@@ -6,6 +6,7 @@ public class GameSetUp {
 //    Player player2;
 //    GameMode gameMode;
 //    GameBoard gameBoard;
+    Player[] players = new Player[2];
 
     Player player1 = new Player(PlayerType.PLAYER_ONE, "Dudu");
     Player player2 = new Player(PlayerType.PLAYER_BOT, "Robozinho");
@@ -28,6 +29,10 @@ public class GameSetUp {
         return player2;
     }
 
+    public Player[] getPlayers() {
+       return new Player[]{this.player1, this.player2};
+    }
+
     public GameBoard getGameBoard() {
         return gameBoard;
     }
@@ -35,21 +40,5 @@ public class GameSetUp {
     public GameMode getGameMode() {
         return gameMode;
     }
-    
-    public Player nextPlayer(Player player){
-        switch (player.getPlayerType()) {
 
-            case PLAYER_ONE -> {
-                return getPlayer2();
-            }
-            case PLAYER_TWO -> {
-                return  getPlayer1();
-            }
-            case PLAYER_BOT -> {
-                return getPlayer1();
-            }
-        }
-
-        return player;
-    }
 }
