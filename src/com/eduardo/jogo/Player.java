@@ -1,57 +1,43 @@
 package com.eduardo.jogo;
 
+import java.util.Scanner;
+
 public class Player {
 
     private PlayerType playerType;
-    private MarkType markType;
     private int points;
     private String name;
     private int positionThePlayerChose;
 
+    public Player() {
+    }
+
     public Player(PlayerType playerType, String name) {
         this.playerType = playerType;
         this.name = name;
-        this.markType = setMarkType(playerType);
-
+        this.points = 0;
     }
 
     public int playerMove(GameBoard board, Player player) {
         switch (player.playerType) {
-            case PLAYER_ONE -> {
-                System.out.println("Player 1 move");
-            }
-            case PLAYER_TWO -> {
-                System.out.println("Player 2 move");
+            case PLAYER_ONE, PLAYER_TWO -> {
+                Scanner scan = new Scanner(System.in);
+                int position = scan.nextInt() - 1;
+                return position;
+
             }
             case PLAYER_BOT -> {
                 System.out.println("Bot move");
+                return 0;
             }
-        }
-        return 0;
-    }
+            default -> throw new IllegalStateException("Unexpected value: " + player.playerType);
 
-    private MarkType setMarkType(PlayerType playerType) {
-        switch (playerType) {
-
-            case PLAYER_ONE -> {
-                return markType.X;
-            }
-            case PLAYER_TWO -> {
-                return markType.O;
-            }
-            case PLAYER_BOT -> {
-                return MarkType.O;
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + playerType);
         }
+
     }
 
     public PlayerType getPlayerType() {
         return playerType;
-    }
-
-    public MarkType getMarkType() {
-        return markType;
     }
 
     public int getPoints() {

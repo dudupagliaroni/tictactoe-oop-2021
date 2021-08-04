@@ -1,19 +1,38 @@
 package com.eduardo.jogo;
 
+import java.util.Random;
+
 public class RoundLoop {
 
-    public void roundLoop(GameBoard board, GameSetUp gameSetUp) {
+    public void roundLoop(GameBoard gameBoard, GameSetUp gameSetUp) {
 
-        switch (gameSetUp.getGameMode()) {
-            case PVC: {
-                System.out.println("Modo PVC");
-            }
-            case PVP: {
-                System.out.println("Modo PVC");
+        Player currentPlayer = selectRandomPlayer(gameSetUp);
+
+        if (gameSetUp.getGameState() == GameState.PLAYING) {
+
+            switch (gameSetUp.getGameMode()) {
+                case PVP: {
+                    currentPlayer.setPositionThePlayerChose(currentPlayer.playerMove(gameBoard,currentPlayer));
+                    gameBoard.upDateGameBoard(currentPlayer, gameBoard);
+                    PrintUtil printUtil = new PrintUtil();
+                    printUtil.printBoard(gameBoard);
+                    System.out.println("case pvp");
+                    // verificar ganhador
+                    // trocar próximo jogador
+                    // retornar gameState
+
+
+                }
+                case PVC: {
+                    System.out.println("case pvc");
+
+                }
+
+                default: {
+                    System.out.println(0);
+                }
             }
         }
-
-
     }
 
     public PlayerType nextPlayer(Player player) {
@@ -26,6 +45,12 @@ public class RoundLoop {
             }
             default -> throw new IllegalStateException("Unexpected value: " + player.getPlayerType());
         }
+    }
+
+    public Player selectRandomPlayer(GameSetUp gameSetUp) {
+        int random = new Random().nextInt(gameSetUp.getPlayers().length);
+        System.out.println(random);
+        return gameSetUp.getPlayers()[random];
     }
 
 }

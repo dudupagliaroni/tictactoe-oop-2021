@@ -2,22 +2,25 @@ package com.eduardo.jogo;
 
 public class GameSetUp {
     
-//    Player player1;
-//    Player player2;
-//    GameMode gameMode;
-//    GameBoard gameBoard;
-    Player[] players = new Player[2];
+    private Player player1;
+    private Player player2;
+    private GameMode gameMode;
+    private GameBoard gameBoard;
+    private GameState gameState;
+    private Player[] players = new Player[2];
 
-    Player player1 = new Player(PlayerType.PLAYER_ONE, "Dudu");
-    Player player2 = new Player(PlayerType.PLAYER_BOT, "Robozinho");
-    GameBoard gameBoard = new GameBoard();
-    GameMode gameMode = GameMode.PVP;
+//    Player player1 = new Player(PlayerType.PLAYER_ONE, "Dudu");
+//    Player player2 = new Player(PlayerType.PLAYER_BOT, "Robozinho");
+//    GameBoard gameBoard = new GameBoard();
+//    GameMode gameMode = GameMode.PVP;
 
     public GameSetUp(Player player1, Player player2, GameMode gameMode, GameBoard gameBoard) {
         this.player1 = player1;
         this.player2 = player2;
         this.gameMode = gameMode;
         this.gameBoard = gameBoard;
+        this.gameState = GameState.PLAYING;
+        this.players = getPlayers();
     }
 
 
@@ -41,4 +44,7 @@ public class GameSetUp {
         return gameMode;
     }
 
+    public GameState getGameState() {
+        return gameState;
+    }
 }

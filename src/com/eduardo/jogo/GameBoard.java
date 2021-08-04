@@ -24,15 +24,19 @@ public class GameBoard {
         return allLines;
     }
 
+
     public void upDateGameBoard(Player player, GameBoard gameBoard) {
-        switch (player.getMarkType()) {
-            case X -> {
+
+        switch (player.getPlayerType()) {
+            case PLAYER_ONE -> {
                 gameBoard.getGameboard()[player.getPositionThePlayerChose()] = 1;
             }
-            case O -> {
+            case PLAYER_TWO, PLAYER_BOT -> {
                 gameBoard.getGameboard()[player.getPositionThePlayerChose()] = -1;
             }
-            default -> throw new IllegalStateException("Unexpected value: " + player.getMarkType());
+            default -> {
+                throw new IllegalStateException("Unexpected value: " + player.getPlayerType());
+            }
         }
         
 
