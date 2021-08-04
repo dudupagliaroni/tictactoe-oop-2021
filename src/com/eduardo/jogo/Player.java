@@ -8,6 +8,7 @@ public class Player {
     private PlayerType playerType;
     private int points;
     private String name;
+    private PlayerMarking playerMarking;
 
 
     public Player() {
@@ -17,6 +18,7 @@ public class Player {
         this.playerType = playerType;
         this.name = name;
         this.points = 0;
+
     }
 
     public int playerMove(GameBoard board, Player player) {
@@ -39,6 +41,18 @@ public class Player {
 
     public PlayerType getPlayerType() {
         return playerType;
+    }
+
+    public PlayerMarking getPlayerMarking() {
+        switch (this.getPlayerType()) {
+            case PLAYER_ONE -> {
+                return PlayerMarking.X;
+            }
+            case PLAYER_TWO, PLAYER_BOT -> {
+                return PlayerMarking.O;
+            }
+        }
+        return playerMarking;
     }
 
     public int getPoints() {

@@ -14,7 +14,8 @@ public class GameBoard {
     private final int[] allPositions = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     private final int[][] allLines = {row1, row2, row3, column1, column2, column3, diagonal1, diagonal2};
 
-    private int gameBoard[] = new int[9];
+    private final int[] gameBoard = new int[9];
+    private PlayerMarking markingBoard[] = new PlayerMarking[9];
 
     public int[] getGameboard() {
         return gameBoard;
