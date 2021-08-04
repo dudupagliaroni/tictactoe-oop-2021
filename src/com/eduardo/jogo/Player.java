@@ -9,11 +9,6 @@ public class Player {
     private int points;
     private String name;
 
-
-
-    public Player() {
-    }
-
     public Player(PlayerType playerType, String name) {
         this.playerType = playerType;
         this.name = name;
@@ -39,10 +34,6 @@ public class Player {
 
     }
 
-    public PlayerType getPlayerType() {
-        return playerType;
-    }
-
     public PlayerMarking getPlayerMarking() {
         switch (this.getPlayerType()) {
             case PLAYER_ONE -> {
@@ -53,6 +44,10 @@ public class Player {
             }
         }
         return null;
+    }
+
+    public PlayerType getPlayerType() {
+        return playerType;
     }
 
     public int getPoints() {

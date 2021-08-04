@@ -7,7 +7,7 @@ public class GameSetUp {
     private GameMode gameMode;
     private GameBoard gameBoard;
     private GameState gameState;
-    private Player[] players = new Player[2];
+
 
 //    Player player1 = new Player(PlayerType.PLAYER_ONE, "Dudu");
 //    Player player2 = new Player(PlayerType.PLAYER_BOT, "Robozinho");
@@ -20,20 +20,15 @@ public class GameSetUp {
         this.gameMode = gameMode;
         this.gameBoard = gameBoard;
         this.gameState = GameState.PLAYING;
-        this.players = getPlayers();
-    }
 
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
     }
 
     public Player[] getPlayers() {
        return new Player[]{this.player1, this.player2};
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 
     public GameBoard getGameBoard() {
@@ -48,7 +43,5 @@ public class GameSetUp {
         return gameState;
     }
 
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
-    }
+
 }
