@@ -58,4 +58,8 @@ public class GameBoard {
         }
         System.out.println();
     }
+
+    public int[] getAllPositions() {
+        return allPositions;
+    }
 }

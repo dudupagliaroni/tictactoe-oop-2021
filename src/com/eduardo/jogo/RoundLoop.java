@@ -4,36 +4,33 @@ import java.util.Random;
 
 public class RoundLoop {
 
-    public void roundLoop(GameBoard gameBoard, GameSetUp gameSetUp) {
+
+    private PrintUtil printUtil = new PrintUtil();
+
+    public GameState roundLoop(GameBoard gameBoard, GameSetUp gameSetUp) {
 
         Player currentPlayer = selectRandomPlayer(gameSetUp);
 
         if (gameSetUp.getGameState() == GameState.PLAYING) {
+            do {
 
-            switch (gameSetUp.getGameMode()) {
-                case PVP: {
-                    currentPlayer.setPositionThePlayerChose(currentPlayer.playerMove(gameBoard,currentPlayer));
-                    gameBoard.upDateGameBoard(currentPlayer, gameBoard);
-                    PrintUtil printUtil = new PrintUtil();
-                    printUtil.printBoard(gameBoard);
-                    System.out.println("case pvp");
-                    // verificar ganhador
-                    // trocar próximo jogador
-                    // retornar gameState
+                currentPlayer.setPositionThePlayerChose(currentPlayer.playerMove(gameBoard, currentPlayer));
+                gameBoard.upDateGameBoard(currentPlayer, gameBoard);
+                printUtil.printBoard(gameBoard);
+                nextPlayer(currentPlayer);
 
 
-                }
-                case PVC: {
-                    System.out.println("case pvc");
+                // verificar ganhador
+                // trocar próximo jogador
+                // retornar gameState
 
-                }
+                gameSetUp.setGameState(GameState.TIE);
 
-                default: {
-                    System.out.println(0);
-                }
-            }
+            } while (gameSetUp.getGameState() == GameState.PLAYING);
         }
+        return GameState.PLAYING;
     }
+
 
     public PlayerType nextPlayer(Player player) {
         switch (player.getPlayerType()) {
@@ -49,7 +46,7 @@ public class RoundLoop {
 
     public Player selectRandomPlayer(GameSetUp gameSetUp) {
         int random = new Random().nextInt(gameSetUp.getPlayers().length);
-        System.out.println(random);
+        System.out.println(gameSetUp.getPlayers()[random].getPlayerType());
         return gameSetUp.getPlayers()[random];
     }
 

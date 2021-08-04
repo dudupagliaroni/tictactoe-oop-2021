@@ -1,5 +1,6 @@
 package com.eduardo.jogo;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -28,7 +29,9 @@ public class Player {
             }
             case PLAYER_BOT -> {
                 System.out.println("Bot move");
-                return 0;
+                int random = new Random().nextInt(board.getGameboard().length);
+                int position = board.getAllPositions()[random];
+                return position;
             }
             default -> throw new IllegalStateException("Unexpected value: " + player.playerType);
 
