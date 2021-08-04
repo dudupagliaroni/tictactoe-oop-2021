@@ -7,6 +7,7 @@ public class RoundLoop {
 
     private PrintUtil printUtil = new PrintUtil();
 
+
     public GameState roundLoop(GameBoard gameBoard, GameSetUp gameSetUp) {
 
         Player currentPlayer = selectRandomPlayer(gameSetUp);
@@ -14,17 +15,14 @@ public class RoundLoop {
         if (gameSetUp.getGameState() == GameState.PLAYING) {
             do {
 
-                currentPlayer.setPositionThePlayerChose(currentPlayer.playerMove(gameBoard, currentPlayer));
-                gameBoard.upDateGameBoard(currentPlayer, gameBoard);
-                printUtil.printBoard(gameBoard);
-                nextPlayer(currentPlayer);
-
+                gameBoard.upDateGameBoard(currentPlayer, currentPlayer.playerMove(gameBoard, currentPlayer), gameBoard);
+                printUtil.printMarkingBoard(gameBoard);
+                currentPlayer = nextPlayer(currentPlayer, gameSetUp);
 
                 // verificar ganhador
                 // trocar próximo jogador
                 // retornar gameState
 
-                gameSetUp.setGameState(GameState.TIE);
 
             } while (gameSetUp.getGameState() == GameState.PLAYING);
         }
@@ -32,22 +30,22 @@ public class RoundLoop {
     }
 
 
-    public PlayerType nextPlayer(Player player) {
+    public Player nextPlayer(Player player, GameSetUp gameSetUp) {
         switch (player.getPlayerType()) {
             case PLAYER_ONE -> {
-                return PlayerType.PLAYER_TWO;
+                return gameSetUp.getPlayers()[1];
             }
             case PLAYER_TWO, PLAYER_BOT -> {
-                return PlayerType.PLAYER_ONE;
+                return gameSetUp.getPlayers()[0];
             }
             default -> throw new IllegalStateException("Unexpected value: " + player.getPlayerType());
         }
     }
 
     public Player selectRandomPlayer(GameSetUp gameSetUp) {
-        int random = new Random().nextInt(gameSetUp.getPlayers().length);
-        System.out.println(gameSetUp.getPlayers()[random].getPlayerType());
-        return gameSetUp.getPlayers()[random];
+
+        return gameSetUp.getPlayers()[new Random().nextInt(gameSetUp.getPlayers().length)];
+
     }
 
 }

@@ -2,14 +2,14 @@ package com.eduardo.jogo;
 
 public class PrintUtil {
 
-    public void printBoard(GameBoard gameBoard) {
+    public void printMarkingBoard(GameBoard gameBoard) {
         int k = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                switch (gameBoard.getGameboard()[k]) {
-                    case 0 -> System.out.print(" _ ");
-                    case 1 -> System.out.print(" X ");
-                    case -1 -> System.out.print(" O ");
+                switch (gameBoard.getMarkingBoard()[k]) {
+                    case E -> System.out.print(" _ ");
+                    case X -> System.out.print(" X ");
+                    case O -> System.out.print(" O ");
                 }
                 k++;
             }
@@ -18,6 +18,5 @@ public class PrintUtil {
         }
         System.out.println();
     }
-
 
 }
