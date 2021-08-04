@@ -15,12 +15,9 @@ public class RoundLoop {
         if (gameSetUp.getGameState() == GameState.PLAYING) {
             do {
 
-                int position = currentPlayer.playerMove(gameBoard, currentPlayer);
-                gameBoard.upDateGameBoard(currentPlayer, position, gameBoard);
-                printUtil.printBoard(gameBoard);
-
+                gameBoard.upDateGameBoard(currentPlayer, currentPlayer.playerMove(gameBoard, currentPlayer), gameBoard);
+                printUtil.printMarkingBoard(gameBoard);
                 currentPlayer = nextPlayer(currentPlayer, gameSetUp);
-
 
                 // verificar ganhador
                 // trocar próximo jogador

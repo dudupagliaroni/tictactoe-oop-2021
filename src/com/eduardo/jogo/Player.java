@@ -8,7 +8,7 @@ public class Player {
     private PlayerType playerType;
     private int points;
     private String name;
-    private PlayerMarking playerMarking;
+
 
 
     public Player() {
@@ -52,7 +52,7 @@ public class Player {
                 return PlayerMarking.O;
             }
         }
-        return playerMarking;
+        return null;
     }
 
     public int getPoints() {

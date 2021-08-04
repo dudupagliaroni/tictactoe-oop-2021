@@ -1,5 +1,5 @@
 package com.eduardo.jogo;
 
 public enum PlayerMarking {
-    X, O;
+    O, X, E
 }

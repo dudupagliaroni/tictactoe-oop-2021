@@ -14,35 +14,39 @@ public class GameBoard {
     private final int[] allPositions = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     private final int[][] allLines = {row1, row2, row3, column1, column2, column3, diagonal1, diagonal2};
 
-    private final int[] gameBoard = new int[9];
-    private PlayerMarking markingBoard[] = new PlayerMarking[9];
 
-    public int[] getGameboard() {
+    private PlayerMarking[] gameBoard = new PlayerMarking[9];
+
+
+    public GameBoard() {
+        this.gameBoard = initGameBoard();
+    }
+
+    public void upDateGameBoard(Player player, int position, GameBoard gameBoard) {
+        gameBoard.getMarkingBoard()[position] = player.getPlayerMarking();
+    }
+
+
+    public PlayerMarking[] getGameboard() {
         return gameBoard;
     }
 
-    public int[][] getAllLines() {
-        return allLines;
+    public PlayerMarking[] initGameBoard() {
+        for (int i = 0; i < gameBoard.length; i++) {
+            gameBoard[i] = PlayerMarking.E;
+        }
+        return gameBoard;
     }
 
-
-    public void upDateGameBoard(Player player, int position, GameBoard gameBoard) {
-
-        switch (player.getPlayerType()) {
-            case PLAYER_ONE -> {
-                gameBoard.getGameboard()[position] = 1;
-            }
-            case PLAYER_TWO, PLAYER_BOT -> {
-                gameBoard.getGameboard()[position] = -1;
-            }
-            default -> {
-                throw new IllegalStateException("Unexpected value: " + player.getPlayerType());
-            }
+        public PlayerMarking[] getMarkingBoard () {
+            return gameBoard;
         }
 
-    }
+        public int[][] getAllLines () {
+            return allLines;
+        }
 
-    public int[] getAllPositions() {
-        return allPositions;
+        public int[] getAllPositions () {
+            return allPositions;
+        }
     }
-}
