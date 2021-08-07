@@ -10,26 +10,27 @@ public class Player {
     private int points;
     private String name;
 
-    public Player(PlayerType playerType, String name) {
+    public Player(PlayerType playerType, PlayerNumber playerNumber, String name) {
         this.playerType = playerType;
+        this.playerNumber = playerNumber;
         this.name = name;
         this.points = 0;
 
     }
 
     public int playerMove(GameBoard board, Player player) {
-        switch (player.playerType) {
-            case PLAYER_ONE, PLAYER_TWO -> {
-                System.out.println(player.getPlayerType() + " move");
+        switch (player.getPlayerType()) {
+            case PLAYER_HUMAN -> {
+                System.out.println(player.getPlayerNumber() + " move");
                 Scanner scan = new Scanner(System.in);
                 return scan.nextInt() - 1;
 
             }
             case PLAYER_BOT -> {
-                System.out.println("Bot move");
+                System.out.println(player.getPlayerNumber() + " move");
                 return board.getAllPositions()[new Random().nextInt(board.getGameboard().length)];
             }
-            default -> throw new IllegalStateException("Unexpected value: " + player.playerType);
+            default -> throw new IllegalStateException("Unexpected value: " + player.playerNumber);
 
         }
 
@@ -37,15 +38,19 @@ public class Player {
 
     public PlayerMarking getPlayerMarking() {
         PlayerMarking playerMarking = PlayerMarking.E;
-        switch (this.getPlayerType()) {
-            case PLAYER_ONE -> {
+        switch (this.getPlayerNumber()) {
+            case PLAYER_1 -> {
                 playerMarking = PlayerMarking.X;
             }
-            case PLAYER_TWO, PLAYER_BOT -> {
+            case PLAYER_2 -> {
                 playerMarking = PlayerMarking.O;
             }
         }
         return playerMarking;
+    }
+
+    public PlayerNumber getPlayerNumber() {
+        return playerNumber;
     }
 
     public PlayerType getPlayerType() {

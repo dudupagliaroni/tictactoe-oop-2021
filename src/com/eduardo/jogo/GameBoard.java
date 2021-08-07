@@ -24,8 +24,13 @@ public class GameBoard {
         this.gameBoard = initGameBoard();
     }
 
-    public void upDateGameBoard(Player player, int position, GameBoard gameBoard) {
-        gameBoard.getMarkingBoard()[position] = player.getPlayerMarking();
+    public boolean upDateGameBoard(Player player, int position, GameBoard gameBoard) {
+        if (gameBoard.getGameboard()[position] == PlayerMarking.E) {
+            gameBoard.getMarkingBoard()[position] = player.getPlayerMarking();
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -38,15 +43,23 @@ public class GameBoard {
         return gameBoard;
     }
 
-        public PlayerMarking[] getMarkingBoard () {
-            return gameBoard;
-        }
-
-        public int[][] getAllLines () {
-            return allLines;
-        }
-
-        public int[] getAllPositions () {
-            return allPositions;
-        }
+    public PlayerMarking[] getMarkingBoard() {
+        return gameBoard;
     }
+
+    public int[][] getAllLines() {
+        return allLines;
+    }
+
+    public int[] getAllPositions() {
+        return allPositions;
+    }
+
+    public void setGameBoard(PlayerMarking[] playerMarkings) {
+
+        for (int i = 0; i < gameBoard.length; i++) {
+            gameBoard[i] = playerMarkings[i];
+        }
+
+    }
+}

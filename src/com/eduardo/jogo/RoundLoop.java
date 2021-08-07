@@ -11,31 +11,30 @@ public class RoundLoop {
     public GameState roundLoop(GameBoard gameBoard, GameSetUp gameSetUp) {
 
         Player currentPlayer = selectRandomPlayer(gameSetUp);
+        BoardChecker boardChecker = new BoardChecker();
 
-        if (gameSetUp.getGameState() == GameState.PLAYING) {
-            do {
+        while (gameSetUp.getGameState() == GameState.PLAYING) {
 
-                gameBoard.upDateGameBoard(currentPlayer, currentPlayer.playerMove(gameBoard, currentPlayer), gameBoard);
-                printUtil.printMarkingBoard(gameBoard);
-                currentPlayer = nextPlayer(currentPlayer, gameSetUp);
+            if (gameBoard.upDateGameBoard(currentPlayer, currentPlayer.playerMove(gameBoard, currentPlayer), gameBoard) == false){
+                continue;
+            };
 
-                // verificar ganhador
-                // trocar próximo jogador
-                // retornar gameState
-                currentPlayer = nextPlayer(currentPlayer, gameSetUp);
+            printUtil.printMarkingBoard(gameBoard);
+            System.out.println(boardChecker.checkGameBoard(gameBoard));
+            gameSetUp.upDateGameState(boardChecker.checkGameBoard(gameBoard));
+            currentPlayer = nextPlayer(currentPlayer, gameSetUp);
 
-            } while (gameSetUp.getGameState() == GameState.PLAYING);
         }
-        return GameState.PLAYING;
+        return gameSetUp.getGameState();
     }
 
 
     public Player nextPlayer(Player player, GameSetUp gameSetUp) {
-        switch (player.getPlayerType()) {
-            case PLAYER_ONE -> {
+        switch (player.getPlayerNumber()) {
+            case PLAYER_1 -> {
                 return gameSetUp.getPlayers()[1];
             }
-            case PLAYER_TWO, PLAYER_BOT -> {
+            case PLAYER_2 -> {
                 return gameSetUp.getPlayers()[0];
             }
             default -> throw new IllegalStateException("Unexpected value: " + player.getPlayerType());
