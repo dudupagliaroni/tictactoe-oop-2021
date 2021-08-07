@@ -1,5 +1,7 @@
 package com.eduardo.jogo;
 
+import java.util.Arrays;
+
 public class GameBoard {
 
     private final int[] row1 = {0, 1, 2};
@@ -32,9 +34,7 @@ public class GameBoard {
     }
 
     public PlayerMarking[] initGameBoard() {
-        for (int i = 0; i < gameBoard.length; i++) {
-            gameBoard[i] = PlayerMarking.E;
-        }
+        Arrays.fill(gameBoard, PlayerMarking.E);
         return gameBoard;
     }
 

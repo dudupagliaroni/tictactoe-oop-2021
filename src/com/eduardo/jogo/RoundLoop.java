@@ -22,7 +22,7 @@ public class RoundLoop {
                 // verificar ganhador
                 // trocar próximo jogador
                 // retornar gameState
-
+                currentPlayer = nextPlayer(currentPlayer, gameSetUp);
 
             } while (gameSetUp.getGameState() == GameState.PLAYING);
         }
@@ -43,9 +43,7 @@ public class RoundLoop {
     }
 
     public Player selectRandomPlayer(GameSetUp gameSetUp) {
-
         return gameSetUp.getPlayers()[new Random().nextInt(gameSetUp.getPlayers().length)];
-
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Player {
 
     private PlayerType playerType;
+    private PlayerNumber playerNumber;
     private int points;
     private String name;
 
@@ -35,15 +36,16 @@ public class Player {
     }
 
     public PlayerMarking getPlayerMarking() {
+        PlayerMarking playerMarking = PlayerMarking.E;
         switch (this.getPlayerType()) {
             case PLAYER_ONE -> {
-                return PlayerMarking.X;
+                playerMarking = PlayerMarking.X;
             }
             case PLAYER_TWO, PLAYER_BOT -> {
-                return PlayerMarking.O;
+                playerMarking = PlayerMarking.O;
             }
         }
-        return null;
+        return playerMarking;
     }
 
     public PlayerType getPlayerType() {
