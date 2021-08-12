@@ -29,14 +29,14 @@ public class Round {
     }
 
     private Player nextPlayer(Player player, Player player1, Player player2) {
-        switch (player.getNumber()) {
-            case PLAYER_1 -> {
+        switch (player.getPlayerMark()) {
+            case X -> {
                 return player2;
             }
-            case PLAYER_2 -> {
+            case O -> {
                 return player1;
             }
-            default -> throw new IllegalStateException("Unexpected value: " + player.getNumber());
+            default -> throw new IllegalStateException("Unexpected value: " + player.getPlayerMark());
         }
     }
 

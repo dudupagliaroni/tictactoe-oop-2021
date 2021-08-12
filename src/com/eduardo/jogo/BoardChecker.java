@@ -1,10 +1,10 @@
 package com.eduardo.jogo;
 
-import com.eduardo.jogo.PlayerNumber.PlayerMark;
+import java.util.Arrays;
 
 import static com.eduardo.jogo.GameState.O_WINS;
 import static com.eduardo.jogo.GameState.X_WINS;
-import static com.eduardo.jogo.PlayerNumber.PlayerMark.*;
+import static com.eduardo.jogo.Player.PlayerMark.*;
 
 public class BoardChecker {
 
@@ -40,7 +40,7 @@ public class BoardChecker {
     private GameState checkTie(GameBoard gameBoard) {
         GameState gameState = GameState.PLAYING;
 
-        if (isSpotEmpty(gameBoard)) {
+        if (isAnySpotEmpty(gameBoard)) {
             gameState = GameState.PLAYING;
         } else {
             gameState = GameState.TIE;
@@ -48,13 +48,8 @@ public class BoardChecker {
         return gameState;
     }
 
-    private boolean isSpotEmpty(GameBoard gameBoard) {
-        for (PlayerMark marking : gameBoard.getGameboard()) {
-            if (marking == E) {
-                return true;
-            }
-        }
-        return false;
+    private boolean isAnySpotEmpty(GameBoard gameBoard) {
+        return Arrays.stream(gameBoard.getGameboard()).anyMatch(marking -> marking == Player.PlayerMark.E);
     }
 }
 

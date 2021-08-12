@@ -1,10 +1,6 @@
 package com.eduardo.jogo;
 
-import com.eduardo.jogo.PlayerNumber.PlayerMark;
-
 import java.util.Arrays;
-
-import static com.eduardo.jogo.PlayerNumber.PlayerMark.E;
 
 public class GameBoard {
 
@@ -20,26 +16,26 @@ public class GameBoard {
     private final int[] allPositions = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     private final int[][] allLines = {row1, row2, row3, column1, column2, column3, diagonal1, diagonal2};
 
-    private PlayerMark[] gameBoard = new PlayerMark[9];
+    private Player.PlayerMark[] gameBoard = new Player.PlayerMark[9];
 
     public GameBoard() {
-        Arrays.fill(gameBoard, E);
+        Arrays.fill(gameBoard, Player.PlayerMark.E);
     }
 
     public boolean updateGameBoard(Player player, int position) {
-        if (gameBoard[position] == E) {
-            gameBoard[position] = player.getNumber().getMark();
+        if (gameBoard[position] == Player.PlayerMark.E) {
+            gameBoard[position] = player.getPlayerMark();
             return true;
         } else {
             return false;
         }
     }
 
-    public PlayerMark[] getGameboard() {
+    public Player.PlayerMark[] getGameboard() {
         return gameBoard;
     }
 
-    public PlayerMark[] getMarkingBoard() {
+    public Player.PlayerMark[] getMarkingBoard() {
         return gameBoard;
     }
 
@@ -51,7 +47,7 @@ public class GameBoard {
         return allPositions;
     }
 
-    public void setGameBoard(PlayerMark[] playerMarkings) {
+    public void setGameBoard(Player.PlayerMark[] playerMarkings) {
         for (int i = 0; i < gameBoard.length; i++) {
             gameBoard[i] = playerMarkings[i];
         }

@@ -2,7 +2,7 @@ package com.eduardo.jogo.test;
 
 import com.eduardo.jogo.*;
 
-import static com.eduardo.jogo.PlayerNumber.*;
+import static com.eduardo.jogo.Player.PlayerMark.*;
 
 public class TestGame {
 
@@ -17,9 +17,9 @@ public class TestGame {
 //        gameBoard.setGameBoard(playerMarkings);
 
 
-        Player player1 = new Human(PLAYER_1, "Dudu");
-        Player player2 = new Human(PLAYER_2, "Zé");
-        Player player3 = new Bot(PLAYER_2, "Botzera");
+        Player player1 = new Human(X, "Dudu");
+        Player player2 = new Human(O, "Zé");
+        Player player3 = new Bot(O, "Botzera");
 
         GameCore game = new GameCore(player1, player2, 3);
         game.run();

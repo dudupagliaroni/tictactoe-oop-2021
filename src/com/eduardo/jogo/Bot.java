@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Bot extends Player {
 
-    public Bot(PlayerNumber playerNumber, String name) {
-        super.playerNumber = playerNumber;
+    public Bot(PlayerMark playerMark, String name) {
+        super.playerMark = playerMark;
         super.name = name;
         this.points = 0;
     }

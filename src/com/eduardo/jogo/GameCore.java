@@ -23,10 +23,14 @@ public class GameCore {
                 case O_WINS -> player2.updatePoints(1);
                 case TIE    -> ties++;
             }
+
+            System.out.println(roundState);
+            System.out.println("Jogador 1: " + player1.getPoints());
+            System.out.println("Jogador 2: " + player2.getPoints());
+            System.out.println("Empates:   " + ties);
+
         }
 
-        System.out.println("Jogador 1 " + player1.getPoints());
-        System.out.println("Jogador 2 " + player2.getPoints());
-        System.out.println("Empates " + ties);
+
     }
 }
