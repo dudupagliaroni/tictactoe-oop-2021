@@ -16,7 +16,7 @@ public class GameCore {
         int ties = 0;
 
         for (int i = 0; i < numOfRounds; i++) {
-            GameState roundState = new Round().runLoop(player1, player2);
+            RoundState roundState = new Round().runLoop(player1, player2);
 
             switch (roundState) {
                 case X_WINS -> player1.updatePoints(1);
@@ -25,8 +25,8 @@ public class GameCore {
             }
 
             System.out.println(roundState);
-            System.out.println("Jogador 1: " + player1.getPoints());
-            System.out.println("Jogador 2: " + player2.getPoints());
+            System.out.println("Jogador 1 - " + player1.getName() + ": " + player1.getPoints());
+            System.out.println("Jogador 2 - " + player2.getName() + ": " + player2.getPoints());
             System.out.println("Empates:   " + ties);
 
         }

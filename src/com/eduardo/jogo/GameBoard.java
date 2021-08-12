@@ -48,8 +48,6 @@ public class GameBoard {
     }
 
     public void setGameBoard(Player.PlayerMark[] playerMarkings) {
-        for (int i = 0; i < gameBoard.length; i++) {
-            gameBoard[i] = playerMarkings[i];
-        }
+        System.arraycopy(playerMarkings, 0, gameBoard, 0, gameBoard.length);
     }
 }

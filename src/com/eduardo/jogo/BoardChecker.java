@@ -2,15 +2,15 @@ package com.eduardo.jogo;
 
 import java.util.Arrays;
 
-import static com.eduardo.jogo.GameState.O_WINS;
-import static com.eduardo.jogo.GameState.X_WINS;
+import static com.eduardo.jogo.RoundState.O_WINS;
+import static com.eduardo.jogo.RoundState.X_WINS;
 import static com.eduardo.jogo.Player.PlayerMark.*;
 
 public class BoardChecker {
 
-    public GameState checkGameState(GameBoard gameBoard) {
-        GameState gameState = GameState.PLAYING;
-        gameState = checkTie(gameBoard);
+    public RoundState checkGameState(GameBoard gameBoard) {
+        RoundState roundState = RoundState.PLAYING;
+        roundState = checkTie(gameBoard);
 
         for (int[] line : gameBoard.getAllLines()) {
             int numOfMarksPlayer1 = 0;
@@ -27,25 +27,25 @@ public class BoardChecker {
             }
 
             if (numOfMarksPlayer1 == 3) {
-                gameState = X_WINS;
+                roundState = X_WINS;
             }
 
             if (numOfMarksPlayer2 == 3) {
-                gameState = O_WINS;
+                roundState = O_WINS;
             }
         }
-        return gameState;
+        return roundState;
     }
 
-    private GameState checkTie(GameBoard gameBoard) {
-        GameState gameState = GameState.PLAYING;
+    private RoundState checkTie(GameBoard gameBoard) {
+        RoundState roundState = RoundState.PLAYING;
 
         if (isAnySpotEmpty(gameBoard)) {
-            gameState = GameState.PLAYING;
+            roundState = RoundState.PLAYING;
         } else {
-            gameState = GameState.TIE;
+            roundState = RoundState.TIE;
         }
-        return gameState;
+        return roundState;
     }
 
     private boolean isAnySpotEmpty(GameBoard gameBoard) {
