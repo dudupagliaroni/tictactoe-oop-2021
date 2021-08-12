@@ -1,8 +1,7 @@
-package com.eduardo.teste;
+package com.eduardo.test;
 
 import com.eduardo.jogo.GameBoard;
 
-import java.util.Collection;
 import java.util.Collections;
 
 public class TestCollections {

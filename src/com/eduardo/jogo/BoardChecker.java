@@ -1,7 +1,12 @@
 package com.eduardo.jogo;
 
-public class BoardChecker {
+import com.eduardo.jogo.PlayerNumber.PlayerMark;
 
+import static com.eduardo.jogo.GameState.O_WINS;
+import static com.eduardo.jogo.GameState.X_WINS;
+import static com.eduardo.jogo.PlayerNumber.PlayerMark.*;
+
+public class BoardChecker {
 
     public GameState checkGameState(GameBoard gameBoard) {
         GameState gameState = GameState.PLAYING;
@@ -13,29 +18,29 @@ public class BoardChecker {
 
             for (int index : line) {
 
-                if (gameBoard.getGameboard()[index] == PlayerMarking.X) {
+                if (gameBoard.getGameboard()[index] == X) {
                     numOfMarksPlayer1++;
                 }
-                if (gameBoard.getGameboard()[index] == PlayerMarking.O) {
+                if (gameBoard.getGameboard()[index] == O) {
                     numOfMarksPlayer2++;
                 }
             }
 
             if (numOfMarksPlayer1 == 3) {
-                gameState = GameState.X_WINS;
+                gameState = X_WINS;
             }
 
             if (numOfMarksPlayer2 == 3) {
-                gameState = GameState.O_WINS;
+                gameState = O_WINS;
             }
         }
         return gameState;
     }
 
-    public GameState checkTie(GameBoard gameBoard) {
+    private GameState checkTie(GameBoard gameBoard) {
         GameState gameState = GameState.PLAYING;
 
-        if (thereIsEmptySpot(gameBoard)) {
+        if (isSpotEmpty(gameBoard)) {
             gameState = GameState.PLAYING;
         } else {
             gameState = GameState.TIE;
@@ -43,9 +48,9 @@ public class BoardChecker {
         return gameState;
     }
 
-    public boolean thereIsEmptySpot(GameBoard gameBoard) {
-        for (PlayerMarking marking : gameBoard.getGameboard()) {
-            if (marking == PlayerMarking.E) {
+    private boolean isSpotEmpty(GameBoard gameBoard) {
+        for (PlayerMark marking : gameBoard.getGameboard()) {
+            if (marking == E) {
                 return true;
             }
         }

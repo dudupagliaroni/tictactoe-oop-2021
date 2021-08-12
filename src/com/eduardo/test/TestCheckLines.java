@@ -1,19 +1,22 @@
-package com.eduardo.teste;
+package com.eduardo.jogo.test;
 
 import com.eduardo.jogo.BoardChecker;
 import com.eduardo.jogo.GameBoard;
-import com.eduardo.jogo.PlayerMarking;
+import com.eduardo.jogo.PlayerNumber.PlayerMark;
 import com.eduardo.jogo.PrintUtil;
+
+import static com.eduardo.jogo.PlayerNumber.PlayerMark.O;
+import static com.eduardo.jogo.PlayerNumber.PlayerMark.X;
 
 public class TestCheckLines {
 
     public static void main(String[] args) {
         GameBoard gameBoard = new GameBoard();
 
-        PlayerMarking[] playerMarkings = {
-                PlayerMarking.X, PlayerMarking.O, PlayerMarking.X,
-                PlayerMarking.X, PlayerMarking.O, PlayerMarking.X,
-                PlayerMarking.O, PlayerMarking.X, PlayerMarking.O
+        PlayerMark[] playerMarkings = {
+                X, O, X,
+                X, O, X,
+                O, X, O
         };
 
         gameBoard.setGameBoard(playerMarkings);

@@ -1,60 +1,18 @@
 package com.eduardo.jogo;
 
-import java.util.Random;
-import java.util.Scanner;
+import static com.eduardo.jogo.PlayerNumber.PlayerMark.O;
+import static com.eduardo.jogo.PlayerNumber.PlayerMark.X;
 
-public class Player {
+public abstract class Player {
 
-    private PlayerType playerType;
-    private PlayerNumber playerNumber;
-    private int points;
-    private String name;
+    protected PlayerNumber playerNumber;
+    protected int points;
+    protected String name;
 
-    public Player(PlayerType playerType, PlayerNumber playerNumber, String name) {
-        this.playerType = playerType;
-        this.playerNumber = playerNumber;
-        this.name = name;
-        this.points = 0;
+    abstract int move(GameBoard board);
 
-    }
-
-    public int playerMove(GameBoard board, Player player) {
-        switch (player.getPlayerType()) {
-            case PLAYER_HUMAN -> {
-                System.out.println(player.getPlayerNumber() + " move");
-                Scanner scan = new Scanner(System.in);
-                return scan.nextInt() - 1;
-
-            }
-            case PLAYER_BOT -> {
-                System.out.println(player.getPlayerNumber() + " move");
-                return board.getAllPositions()[new Random().nextInt(board.getGameboard().length)];
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + player.playerNumber);
-
-        }
-
-    }
-
-    public PlayerMarking getPlayerMarking() {
-        PlayerMarking playerMarking = PlayerMarking.E;
-        switch (this.getPlayerNumber()) {
-            case PLAYER_1 -> {
-                playerMarking = PlayerMarking.X;
-            }
-            case PLAYER_2 -> {
-                playerMarking = PlayerMarking.O;
-            }
-        }
-        return playerMarking;
-    }
-
-    public PlayerNumber getPlayerNumber() {
+    public PlayerNumber getNumber() {
         return playerNumber;
-    }
-
-    public PlayerType getPlayerType() {
-        return playerType;
     }
 
     public int getPoints() {
@@ -69,7 +27,25 @@ public class Player {
         this.points += points;
     }
 
+
+    public enum PlayerNumber {
+
+        PLAYER_1(X), PLAYER_2(O);
+
+        private PlayerMark mark;
+
+        public com.eduardo.jogo.PlayerNumber.PlayerMark getMark() {
+            return mark;
+        }
+
+        PlayerNumber(PlayerMark mark) {
+            this.mark = mark;
+        }
+    }
+
+
+    public enum PlayerMark {
+        O, X, E
+    }
+
 }
-
-
-

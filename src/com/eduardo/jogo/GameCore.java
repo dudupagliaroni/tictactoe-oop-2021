@@ -2,36 +2,31 @@ package com.eduardo.jogo;
 
 public class GameCore {
 
+    private Player player1;
+    private Player player2;
+    private int numOfRounds;
 
-    public void gameLoop(GameSetUp gameSetUp, GameBoard gameBoard, int numOfRounds) {
+    public GameCore(Player player1, Player player2, int numOfRounds) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.numOfRounds = numOfRounds;
+    }
+
+    public void run() {
         int ties = 0;
 
-        RoundLoop roundLoop = new RoundLoop();
-
-
         for (int i = 0; i < numOfRounds; i++) {
-            gameSetUp.upDateGameState(GameState.PLAYING);
-            gameBoard.initGameBoard();
-            gameSetUp.upDateGameState(roundLoop.roundLoop(gameBoard, gameSetUp));
+            GameState roundState = new Round().runLoop(player1, player2);
 
-            switch (gameSetUp.getGameState()) {
-                case X_WINS -> {
-                    gameSetUp.getPlayers()[0].updatePoints(1);
-                }
-                case O_WINS -> {
-                    gameSetUp.getPlayers()[1].updatePoints(1);
-                }
-                case TIE -> {
-                    ties++;
-                }
+            switch (roundState) {
+                case X_WINS -> player1.updatePoints(1);
+                case O_WINS -> player2.updatePoints(1);
+                case TIE    -> ties++;
             }
         }
 
-        System.out.println("Jogador 1 " + gameSetUp.getPlayers()[0].getPoints());
-        System.out.println("Jogador 2 " + gameSetUp.getPlayers()[1].getPoints());
+        System.out.println("Jogador 1 " + player1.getPoints());
+        System.out.println("Jogador 2 " + player2.getPoints());
         System.out.println("Empates " + ties);
-
     }
-
-
 }
