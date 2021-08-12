@@ -2,7 +2,7 @@ package com.eduardo.jogo;
 
 public class PrintUtil {
 
-    public void printMarkingBoard(GameBoard gameBoard) {
+    public void printBoard(GameBoard gameBoard) {
         int k = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {

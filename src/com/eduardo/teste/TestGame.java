@@ -1,4 +1,6 @@
-package com.eduardo.jogo;
+package com.eduardo.teste;
+
+import com.eduardo.jogo.*;
 
 public class TestGame {
 

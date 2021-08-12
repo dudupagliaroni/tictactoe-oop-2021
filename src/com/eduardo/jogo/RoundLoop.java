@@ -19,9 +19,9 @@ public class RoundLoop {
                 continue;
             };
 
-            printUtil.printMarkingBoard(gameBoard);
-            System.out.println(boardChecker.checkGameBoard(gameBoard));
-            gameSetUp.upDateGameState(boardChecker.checkGameBoard(gameBoard));
+            printUtil.printBoard(gameBoard);
+            System.out.println(boardChecker.checkGameState(gameBoard));
+            gameSetUp.upDateGameState(boardChecker.checkGameState(gameBoard));
             currentPlayer = nextPlayer(currentPlayer, gameSetUp);
 
         }
@@ -44,5 +44,4 @@ public class RoundLoop {
     public Player selectRandomPlayer(GameSetUp gameSetUp) {
         return gameSetUp.getPlayers()[new Random().nextInt(gameSetUp.getPlayers().length)];
     }
-
 }

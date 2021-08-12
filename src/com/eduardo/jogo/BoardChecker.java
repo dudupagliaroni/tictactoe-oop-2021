@@ -3,7 +3,7 @@ package com.eduardo.jogo;
 public class BoardChecker {
 
 
-    public GameState checkGameBoard(GameBoard gameBoard) {
+    public GameState checkGameState(GameBoard gameBoard) {
         GameState gameState = GameState.PLAYING;
         gameState = checkTie(gameBoard);
 
@@ -35,7 +35,7 @@ public class BoardChecker {
     public GameState checkTie(GameBoard gameBoard) {
         GameState gameState = GameState.PLAYING;
 
-        if (thereIsSpotEmpty(gameBoard)) {
+        if (thereIsEmptySpot(gameBoard)) {
             gameState = GameState.PLAYING;
         } else {
             gameState = GameState.TIE;
@@ -43,7 +43,7 @@ public class BoardChecker {
         return gameState;
     }
 
-    public boolean thereIsSpotEmpty(GameBoard gameBoard) {
+    public boolean thereIsEmptySpot(GameBoard gameBoard) {
         for (PlayerMarking marking : gameBoard.getGameboard()) {
             if (marking == PlayerMarking.E) {
                 return true;
